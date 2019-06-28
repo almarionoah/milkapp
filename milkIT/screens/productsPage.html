@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../theme/productsPage.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="../js/productsPage.js"></script>
+  </head>
+  <body>
+    
+    <div id="products">
+	
+	<div class="alertBox" id="quantity_alert" style="background-color:red;" hidden>
+	<span class="closeBtn" onclick="closeQuantityAlertBox()">&times;</span>
+	<h3><strong>Quantity</strong> must be a number greater than 0 and not words</h3>
+	</div>
+	<div class="alertBox" id="success_alert_add" style="background-color:green;" hidden>
+	<span class="closeBtn" onclick="closeSuccessAddAlertBox()">&times;</span>
+	<h3><span class="glyphicon glyphicon-ok"></span> Data successfully added to your cart</h3>
+	</div>
+	<div class="alertBox" id="success_alert_remove" style="background-color: yellow;" hidden>
+	<span class="closeBtn" onclick="closeSuccessRemoveAlertBox()">&times;</span>
+	<h3><span class="glyphicon glyphicon-ok"></span> Data successfully removed from your cart</h3>
+	</div>
+	<div class="alertBox" id="empty_cart_alert" style="background-color:red;" hidden>
+	<span class="closeBtn" onclick="closeEmptyCartAlertBox()">&times;</span>
+	<h3><strong>Unfortunately</strong>, you can not remove from an empty cart.</h3>
+	</div>
+	
+</div>
+  </body>
+  <!--<footer>
+    <input type="submit" class="btn-success" value="Check Out"/>
+  </footer>-->
+</html>

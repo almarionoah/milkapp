@@ -2,92 +2,110 @@
     {
       product_id: 0,
       product_name: "milk sachet",
-      product_size: "1L"
+      product_size: "1L",
+	  product_price: 12.50
     },
     {
       product_id: 1,
       product_name: "milk bottle",
-      product_size: "2L"
+      product_size: "2L",
+	  product_price: 16.00
     },
     {
       product_id: 2,
       product_name: "milk bottle",
-      product_size: "250 ml"
+      product_size: "250 ml",
+	  product_price: 6.00
     },
     {
       product_id: 3,
       product_name: "milk bottle",
-      product_size: "500ml"
+      product_size: "500ml",
+	  product_price: 8.00
     },
     {
       product_id: 4,
       product_name: "cream",
-      product_size: "2L"
+      product_size: "2L",
+	  product_price: 22.00
     },
     {
       product_id: 5,
       product_name: "cream",
-      product_size: "1L"
+      product_size: "1L",
+	  product_price: 18.00
     },
     {
       product_id: 6,
       product_name: "cream",
-      product_size: "500ml"
+      product_size: "500ml",
+	  product_price: 10.00
     },
     {
       product_id: 7,
       product_name: "cream",
-      product_size: "250ml"
+      product_size: "250ml",
+	  product_price: 6.50
     },
     {
       product_id: 8,
       product_name: "juice",
-      product_size: "250ml"
+      product_size: "250ml",
+	  product_price: 8.99
     },
     {
       product_id: 9,
       product_name: "juice",
-      product_size: "500ml"
+      product_size: "500ml",
+	  product_price: 11.00
     },
     {
       product_id: 10,
       product_name: "juice",
-      product_size: "1L"
+      product_size: "1L",
+	  product_price: 15.00
     },
     {
       product_id: 11,
       product_name: "juice",
-      product_size: "2L"
+      product_size: "2L",
+	  product_price: 20.00
     },
     {
       product_id: 12,
       product_name: "juice",
-      product_size: "5L"
+      product_size: "5L",
+	  product_price: 28.00
     },
     {
       product_id: 13,
       product_name: "yogurt",
-      product_size: "2L"
+      product_size: "2L",
+	  product_price: 25.00
     },
     {
       product_id: 14,
       product_name: "yogurt",
-      product_size: "1L"
+      product_size: "1L",
+	  product_price: 18.50
     },
     {
       product_id: 15,
       product_name: "yogurt",
-      product_size: "500ml"
+      product_size: "500ml",
+	  product_price: 15.00
     },
     {
       product_id: 16,
       product_name: "yogurt",
-      product_size: "250ml"
+      product_size: "250ml",
+	  product_price: 9.00
     },
     {
       product_id: 17,
       product_name: "turtles",
-      product_size: "1.2L"
+      product_size: "1.2L",
+	  product_price: 40.00
     }
   ];
 var cart = [];
@@ -113,6 +131,7 @@ var addToCart = (id) =>{
 	  $("#" + specific_product_input).attr("readonly");
   }*/
   $("#success_alert_add").show();
+  updateCheckOutButton();
   
  }
  else{
@@ -136,11 +155,13 @@ var removeFromCart = (id) =>{
 		}
 		toggleDisableCartButton(buttonClass,clickedButton);
 		$("#success_alert_remove").show();
+		updateCheckOutButton();
 	}
 	else{
 		$("#empty_cart_alert").show();
 	}
 };
+
 
 var toggleQuantity = product => {
   var specific_product_label = product + "_label";
@@ -175,6 +196,9 @@ var closeEmptyCartAlertBox = () =>{
 	$("#empty_cart_alert").hide();
 }
 
+var closeEmptyCartAlertBoxCheckOut = () =>{
+	$("#empty_cart_alert_check_out").hide();
+};
 var toggleDisableCartButton = (button,id) =>{
 	if(!($("#" + id).is(":disabled")))
 	{
@@ -188,8 +212,15 @@ var toggleDisableCartButton = (button,id) =>{
 }
 var addItem = (item,numberOfItems) => {
     item.quantity = numberOfItems;
+	item.total = numberOfItems * item["product_price"];
 		cart.push(item);
 	};
+
+var updateCheckOutButton = () =>{
+	$("#check_out").html('<span class="glyphicon glyphicon-usd"></span><br/>Check Out ('+cart.length+') items');
+};
+
+
 
 $(document).ready(() => {
    products.forEach(item => {
@@ -198,7 +229,7 @@ $(document).ready(() => {
       item["product_id"] +
       ')"><h3>' +
       item["product_name"] +
-      " " +
+      '<br/>'  +
       item["product_size"] +
       '</h3> <img alt="product_image" src=""/><br/><br/></a><label for="quantity" hidden="true" id="' +
       item["product_id"] +
@@ -209,5 +240,6 @@ $(document).ready(() => {
       '_btnCart" onclick="addToCart(' + item["product_id"] +')" /> <a onclick="removeFromCart('+ item["product_id"] +')"><h4 class="glyphicon glyphicon-backward">Undo</h4></a></label>';
     $("#products").append(template);
   });
+  $("#products").append('<button type="button" class="btn btn-success" value="Check Out" id="check_out" style="width:200px;height:200px;max-height:10%;max-width:15%;position:fixed;top: 60%;right: 10%;border-radius:50%;color:black;font-size: 1vw;box-shadow: 10px 10px;" onclick="checkOut()"><span class="glyphicon glyphicon-shopping-cart"></span><br/>Check Out <br/>('+cart.length+') items</button>');
 });
 

@@ -1,40 +1,77 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../theme/productsPage.css">
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script src="../js/productsPage.js"></script>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../theme/productsPage.css">
+   <link rel="stylesheet" href="../theme/printQuotationPage.css">
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+   <script src="../js/productsPage.js"></script>
+   <script src="../js/printQuotationPage.js"></script>
   </head>
+  
+
   <body>
-    
+  <section id="products_selection">
+   <header style="position:fixed;top: 0%; width: 100%;background-color:white;">
+	<div class="alertBox" id="quantity_alert" style="background-color:red;height: 20%;" hidden>
+	 <span class="closeBtn" onclick="closeQuantityAlertBox()">&times;</span>
+	 <h3><strong>Quantity</strong> must be a number greater than 0 and not words</h3>
+	</div>
+	<div class="alertBox" id="success_alert_add" style="background-color:green;height: 20%;" hidden>
+	 <span class="closeBtn" onclick="closeSuccessAddAlertBox()">&times;</span>
+	 <h3><span class="glyphicon glyphicon-ok"></span> Data successfully added to your cart</h3>
+	</div>
+	<div class="alertBox" id="success_alert_remove" style="background-color: yellow;height: 20%;" hidden>
+	 <span class="closeBtn" onclick="closeSuccessRemoveAlertBox()">&times;</span>
+	 <h3><span class="glyphicon glyphicon-ok"></span> Data successfully removed from your cart</h3>
+	</div>
+	<div class="alertBox" id="empty_cart_alert" style="background-color:red;height: 20%;" hidden>
+	 <span class="closeBtn" onclick="closeEmptyCartAlertBox()">&times;</span>
+	 <h3><strong>Unfortunately</strong>, you can not remove from an empty cart.</h3>
+	</div>
+	<div class="alertBox" id="empty_cart_alert_check_out" style="background-color:red;height: 20%;" hidden>
+	 <span class="closeBtn" onclick="closeEmptyCartAlertBoxCheckOut()">&times;</span>
+	 <h3><strong>Oops</strong>, your cart still seems to be empty.</h3>
+	</div>
+   </header>
     <div id="products">
-	
-	<div class="alertBox" id="quantity_alert" style="background-color:red;" hidden>
-	<span class="closeBtn" onclick="closeQuantityAlertBox()">&times;</span>
-	<h3><strong>Quantity</strong> must be a number greater than 0 and not words</h3>
 	</div>
-	<div class="alertBox" id="success_alert_add" style="background-color:green;" hidden>
-	<span class="closeBtn" onclick="closeSuccessAddAlertBox()">&times;</span>
-	<h3><span class="glyphicon glyphicon-ok"></span> Data successfully added to your cart</h3>
-	</div>
-	<div class="alertBox" id="success_alert_remove" style="background-color: yellow;" hidden>
-	<span class="closeBtn" onclick="closeSuccessRemoveAlertBox()">&times;</span>
-	<h3><span class="glyphicon glyphicon-ok"></span> Data successfully removed from your cart</h3>
-	</div>
-	<div class="alertBox" id="empty_cart_alert" style="background-color:red;" hidden>
-	<span class="closeBtn" onclick="closeEmptyCartAlertBox()">&times;</span>
-	<h3><strong>Unfortunately</strong>, you can not remove from an empty cart.</h3>
-	</div>
-	
-</div>
+	</section>
+	<section id="print_selection" hidden>
+	<div id="quote_header">
+	 <p id="company_details"><strong>Company Name</strong><br/>
+	  Address line 1<br/>
+	  Address line 2<br/>
+	  City<br/>
+	  Phone<br/>
+	  Fax<br/>
+	  E-mail<br/>
+	 </p>
+	 <p id="heading">
+	  <h2>Check Out Quotation</h2>
+	 </p>
+	 <p id="quote_details">
+	  Date:<br />
+	  Quote Number:<br/>
+	  Valid Period:<br/>
+	 </p>
+	 </div>
+	 <!--<a onclick="testPrint()">Test Print</a>-->
+	 <table id="quote" class="table table-striped">
+	 <tr>
+	 <th>Item Number</th>
+	 <th>Description</th>
+	 <th>Item Price</th>
+	 <th>Quantity</th>
+	 <th>Sub-Total</th>
+	 </tr>
+	 </table>
+	</section>
   </body>
-  <!--<footer>
-    <input type="submit" class="btn-success" value="Check Out"/>
-  </footer>-->
+
 </html>

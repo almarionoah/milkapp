@@ -1,0 +1,15 @@
+#quote_header{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+#company_details{
+	width: 15%;
+}
+#heading{
+	width: 15%;
+}
+#quote_details{
+	width: 30%;
+	text-align: center;
+}

@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select Products</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <section id="products_selection">
+  <!--alert section-->
+    <header style="position:fixed;top: 0%; width: 100%;background-color:white;">
+        <div class="alertBox" id="quantity_alert" style="background-color:red;height: 20%;" hidden>
+         <span class="closeBtn" onclick="closeQuantityAlertBox()">&times;</span>
+         <h3><strong>Quantity</strong> must be a number greater than 0 and not words</h3>
+        </div>
+        <div class="alertBox" id="success_alert_add" style="background-color:green;height: 20%;" hidden>
+         <span class="closeBtn" onclick="closeSuccessAddAlertBox()">&times;</span>
+         <h3><span class="glyphicon glyphicon-ok"></span> Data successfully added to your cart</h3>
+        </div>
+        <div class="alertBox" id="success_alert_remove" style="background-color: yellow;height: 20%;" hidden>
+         <span class="closeBtn" onclick="closeSuccessRemoveAlertBox()">&times;</span>
+         <h3><span class="glyphicon glyphicon-ok"></span> Data successfully removed from your cart</h3>
+        </div>
+        <div class="alertBox" id="empty_cart_alert" style="background-color:red;height: 20%;" hidden>
+         <span class="closeBtn" onclick="closeEmptyCartAlertBox()">&times;</span>
+         <h3><strong>Unfortunately</strong>, you can not remove from an empty cart.</h3>
+        </div>
+        <div class="alertBox" id="empty_cart_alert_check_out" style="background-color:red;height: 20%;" hidden>
+         <span class="closeBtn" onclick="closeEmptyCartAlertBoxCheckOut()">&times;</span>
+         <h3><strong>Oops</strong>, your cart still seems to be empty.</h3>
+        </div>
+         </header>
+        <!--end of alerts section-->
+
+        <!--product list-->
+        <div id="products">
+          <ion-list>
+            <ion-item *ngFor="let product of products">  
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="3"></ion-col>
+                  <ion-col size="6">
+                      <ion-card button (click)="toggleQuantity(product.product_id)">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-avatar>
+                                <ion-img slot="start" [src]="product.product_url"></ion-img>
+                              </ion-avatar>
+                            <h3>{{product.product_name}} <br/> {{product.product_size}} @ {{product.product_price}}</h3>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-card>
+                  </ion-col>
+                  <ion-col size="3"></ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-list>
+                        
+            
+        </div>
+        </section>
+
+        <section id="print_selection" hidden>
+        </section>
+        
+</ion-content>

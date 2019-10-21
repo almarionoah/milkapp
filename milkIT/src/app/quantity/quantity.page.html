@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><h6>Quantity(per dozen)</h6></ion-title>
+    <span class='closeBtn' style="float: right;"> &times; </span>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <label ion-label for="quantity">Quantity:</label>
+          <ion-input type="number" placeholder="quantity per dozen" name="quantity" [(ngModel)]="quantity" id="quantity"></ion-input>      
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button  [ngClass]="{'btn-default' : btnAddToCartIsEnabled === true,'btn-success': btnAddToCartIsEnabled === false}"
+         ion-button (click)="addToCart()"  [disabled]="btnAddToCartIsEnabled"><h4>Add To Cart</h4></button>
+      </ion-col>
+      <ion-col>
+          <button class="btn-danger" (click)="removeFromCart()" id="removeFromCart"><h4 class="glyphicon glyphicon-backward">Undo</h4></button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

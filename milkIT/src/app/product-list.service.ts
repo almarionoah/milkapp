@@ -5,7 +5,8 @@ import { Products } from './products/products.model';
   providedIn: 'root'
 })
 export class ProductListService {
-  cart: Products[] = [];
+  private cart: Products[] = [];
+  private total = 0;
   products: Products[] = [
     {
       product_id: 0,
@@ -166,15 +167,52 @@ export class ProductListService {
     this.cart.push(product);
   }
 
+  removeItem(productId: number) {
+    const currentCart = this.getCart();
+    if (currentCart.length > 0) {
+      for (let i = 0; i < currentCart.length; i++) {
+        const item = currentCart[i];
+        if (item.product_id === productId) {
+            currentCart.splice(i, 1);
+          }
+        break;
+        }
+      return true;
+      }
+    return false;
+
+  }
+
   isInCart(productId: number) {
-    if ((this.cart.length > 0) && (this.cart.find(product => product.product_id === productId) !== null)) {
+    const currentCart = this.getCart();
+    if ((currentCart.length > 0)) {
+      const hasProduct = currentCart.find(product => product.product_id === productId);
+      if (hasProduct !== null && hasProduct !== undefined) {
       return true;
     }
+  }
     return false;
   }
 
   getCart() {
     return this.cart;
   }
+
+  getTotal() {
+    this.total = 0;
+    if(this.cart.length > 0)
+    {
+        this.cart.forEach((product) => {
+          this.total += (product.product_price * product.quantity);
+        });
+    }
+    return this.total;
+  }
+
+  getCartLength() {
+    return (this.cart.length);
+  }
+
+
 
 }

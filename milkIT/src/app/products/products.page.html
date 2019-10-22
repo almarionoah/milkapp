@@ -5,27 +5,28 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <code><h3>$<input [value]="getTotal()" readonly="true" /></h3></code>
+    </ion-row>
+  </ion-grid>
     <section id="products_selection">
   <!--alert section-->
-    <header style="position:fixed;top: 0%; width: 100%;background-color:white;">
-        <div class="alertBox" id="quantity_alert" style="background-color:red;height: 20%;" hidden>
-         <span class="closeBtn" onclick="closeQuantityAlertBox()">&times;</span>
+    <header>
+        <div class="alertBox" id="quantity_alert" style="background-color:red;height: 20%;" [(hidden)]="quantityAlertShouldShow">
+         <span (click)="closeQuantityAlertBox()" style=" margin-left: 15px;color: black;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;">&times;</span>
          <h3><strong>Quantity</strong> must be a number greater than 0 and not words</h3>
         </div>
-        <div class="alertBox" id="success_alert_add" style="background-color:green;height: 20%;" hidden>
-         <span class="closeBtn" onclick="closeSuccessAddAlertBox()">&times;</span>
+        <div class="alertBox" id="success_alert_add" style="background-color:green;height: 20%;" [(hidden)]="successAddAlertShouldShow">
+         <span (click)="closeSuccessAddAlertBox()" style=" margin-left: 15px;color: black;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;">&times;</span>
          <h3><span class="glyphicon glyphicon-ok"></span> Data successfully added to your cart</h3>
         </div>
-        <div class="alertBox" id="success_alert_remove" style="background-color: yellow;height: 20%;" hidden>
-         <span class="closeBtn" onclick="closeSuccessRemoveAlertBox()">&times;</span>
+        <div class="alertBox" id="success_alert_remove" style="background-color: yellow;height: 20%;" [(hidden)]="successRemoveAlertShouldShow">
+         <span (click)="closeSuccessRemoveAlertBox()" style=" margin-left: 15px;color: black;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;">&times;</span>
          <h3><span class="glyphicon glyphicon-ok"></span> Data successfully removed from your cart</h3>
         </div>
-        <div class="alertBox" id="empty_cart_alert" style="background-color:red;height: 20%;" hidden>
-         <span class="closeBtn" onclick="closeEmptyCartAlertBox()">&times;</span>
-         <h3><strong>Unfortunately</strong>, you can not remove from an empty cart.</h3>
-        </div>
-        <div class="alertBox" id="empty_cart_alert_check_out" style="background-color:red;height: 20%;" hidden>
-         <span class="closeBtn" onclick="closeEmptyCartAlertBoxCheckOut()">&times;</span>
+        <div class="alertBox" id="empty_cart_alert_check_out" style="background-color:red;height: 20%;" [(hidden)]="emptyCartAlertShouldShow">
+         <span (click)="closeEmptyCartAlertBoxCheckOut()" style=" margin-left: 15px;color: black;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;">&times;</span>
          <h3><strong>Oops</strong>, your cart still seems to be empty.</h3>
         </div>
          </header>
@@ -36,21 +37,19 @@
           <ion-list>
             <ion-item *ngFor="let product of products">  
               <ion-grid>
-                <ion-row>
-                  <ion-col size="3"></ion-col>
-                  <ion-col size="6">
+                <ion-row style="width:100%;">
+                  <ion-col>
                       <ion-card button (click)="toggleQuantity(product.product_id)">
                           <ion-grid>
                             <ion-row>
                               <ion-avatar>
                                 <ion-img slot="start" [src]="product.product_url"></ion-img>
                               </ion-avatar>
-                            <h3>{{product.product_name}} <br/> {{product.product_size}} @ {{product.product_price}}</h3>
+                            <h3>{{product.product_name}} <br/> {{product.product_size}} @ {{product.product_price | currency}}</h3>
                             </ion-row>
                           </ion-grid>
                         </ion-card>
                   </ion-col>
-                  <ion-col size="3"></ion-col>
                 </ion-row>
               </ion-grid>
             </ion-item>
@@ -58,8 +57,8 @@
                         
             
         </div>
+        <button type="button" class="btn btn-success" value="Check Out" id="check_out" style="width:200px;height:200px;max-height:10%;max-width:15%;position:fixed;top: 60%;right: 10%;border-radius:50%;color:black;font-size: 1vw;box-shadow: 10px 10px;" (click)="checkOut()"><span class="glyphicon glyphicon-shopping-cart"></span><br/>Check Out <br/>{{getCartLength()}} items</button>
         </section>
-
         <section id="print_selection" hidden>
         </section>
         

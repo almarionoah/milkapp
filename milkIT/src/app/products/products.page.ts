@@ -12,8 +12,12 @@ import {ProductListService} from '../product-list.service';
 export class ProductsPage implements OnInit {
 
   products: Products[];
+  quantityAlertShouldShow = true;
+  successAddAlertShouldShow = true;
+  successRemoveAlertShouldShow = true;
+  emptyCartAlertShouldShow = true;
+  total = 0;
   constructor(private popoverController: PopoverController, private productList: ProductListService) { }
-
   ngOnInit() {
     this.products = this.productList.getProducts();
   }
@@ -21,9 +25,35 @@ export class ProductsPage implements OnInit {
   async toggleQuantity(productId: any) {
   const popover = await this.popoverController.create({
     component: QuantityPage,
-    componentProps: {productID: productId},
+    componentProps: {
+      productID: productId
+    },
   });
   return await popover.present();
+ }
+
+ closeEmptyCartAlertBoxCheckOut() {
+   this.emptyCartAlertShouldShow = true;
+ }
+
+ closeSuccessRemoveAlertBox() {
+  this.successRemoveAlertShouldShow = true;
+ }
+
+ closeSuccessAddAlertBox() {
+  this.successAddAlertShouldShow = true;
+ }
+ closeQuantityAlertBox() {
+  this.quantityAlertShouldShow = true;
+ }
+ getTotal() {
+   return this.productList.getTotal();
+ }
+ getCartLength() {
+  return this.productList.getCartLength();
+ }
+ checkOut() {
+
  }
 
 }

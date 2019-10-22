@@ -200,8 +200,7 @@ export class ProductListService {
 
   getTotal() {
     this.total = 0;
-    if(this.cart.length > 0)
-    {
+    if (this.cart.length > 0) {
         this.cart.forEach((product) => {
           this.total += (product.product_price * product.quantity);
         });

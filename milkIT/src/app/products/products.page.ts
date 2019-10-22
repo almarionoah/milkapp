@@ -16,6 +16,9 @@ export class ProductsPage implements OnInit {
   successAddAlertShouldShow = true;
   successRemoveAlertShouldShow = true;
   emptyCartAlertShouldShow = true;
+  isProductsSelected = false;
+  isPrintSelected = true;
+  cartItems = [];
   total = 0;
   constructor(private popoverController: PopoverController, private productList: ProductListService) { }
   ngOnInit() {
@@ -53,7 +56,36 @@ export class ProductsPage implements OnInit {
   return this.productList.getCartLength();
  }
  checkOut() {
-
+  this.cartItems =  this.productList.getCart();
+  if (this.cartItems.length > 0) {
+    this.isProductsSelected = true;
+    this.isPrintSelected = false;
+  }
  }
 
+ paymentGateway() {
+   return;
+ }
+
+ closePrintSelection() {
+   this.isPrintSelected = true;
+   this.isProductsSelected = false;
+ }
+
+ getDate(){
+   return new Date();
+ }
+
+ getQuoteNumber() {
+   const quoteNumber = ((Math.random() * 9999) + 1) + 'milkIT';
+   return btoa(quoteNumber).substring(0, 11);
+ }
+
+ getValidityPeriod() {
+   const today = new Date();
+   const currentDay = today.getDay();
+   const validityExpiryDay = currentDay + 5;
+   today.setDate(validityExpiryDay);
+   return today;
+ }
 }

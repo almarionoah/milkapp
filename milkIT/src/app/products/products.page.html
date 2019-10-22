@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <code><h3>$<input [value]="getTotal()" readonly="true" /></h3></code>
-    </ion-row>
-  </ion-grid>
-    <section id="products_selection">
+    <section id="products_selection" [(hidden)]="isProductsSelected">
+        <ion-grid>
+            <ion-row>
+              <code><h3>$<input [value]="getTotal().toFixed(2)" readonly="true" /></h3></code>
+            </ion-row>
+          </ion-grid>
   <!--alert section-->
     <header>
         <div class="alertBox" id="quantity_alert" style="background-color:red;height: 20%;" [(hidden)]="quantityAlertShouldShow">
@@ -57,9 +57,62 @@
                         
             
         </div>
-        <button type="button" class="btn btn-success" value="Check Out" id="check_out" style="width:200px;height:200px;max-height:10%;max-width:15%;position:fixed;top: 60%;right: 10%;border-radius:50%;color:black;font-size: 1vw;box-shadow: 10px 10px;" (click)="checkOut()"><span class="glyphicon glyphicon-shopping-cart"></span><br/>Check Out <br/>{{getCartLength()}} items</button>
+        <button ion-button type="button" class="btn btn-success" value="Check Out" id="check_out" style="width:200px;height:200px;max-height:10%;max-width:15%;position:fixed;top: 60%;right: 10%;border-radius:50%;color:black;font-size: 1vw;box-shadow: 10px 10px;" (click)="checkOut()"><span class="glyphicon glyphicon-shopping-cart"></span><br/>Check Out <br/>{{getCartLength()}} items</button>
         </section>
-        <section id="print_selection" hidden>
+
+        <section id="print_selection" [(hidden)]="isPrintSelected">
+            <div id="quote_header">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="4">
+                      <p id="company_details">
+                          <strong>MilkIT</strong><br/><strong>Northern Cape Branch:</strong><br/>33 St Augustines Rd Kimberley 8301<br/>Phone: 053 861 4341<br/><strong>Free State Branch:</strong><br/>101 Victoria Rd, Universtars, Bloemfontein, 9301<br/>Phone: 051 444 4472<br/>Fax<br/>E-mail<br/>
+                        </p>
+                  </ion-col>
+                  <ion-col size="4">
+                      <h2>Check Out Quotation</h2>
+                  </ion-col>
+                  <ion-col size="4">
+                      <p id="quote_details">
+                          Date:{{getDate()| date: "longDate"}}<br />Quote Number:{{getQuoteNumber()}}<br/>Valid Period: {{getDate() | date: "longDate"}} until {{getValidityPeriod() | date: "longDate"}}<br/>
+                        </p>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              
+              
+              
+            </div>
+            <table id="quote" class="table table-striped">
+              <tr>
+                <th>Item Number</th>
+                <th>Description</th>
+                <th>Item Price</th>
+                <th>Quantity</th>
+                <th>Sub-Total</th>
+              </tr>
+              <tr *ngFor="let item of cartItems">
+                <td></td>
+                <td>{{item.product_name}} &nbsp; {{item.product_size}}</td>
+                <td>R {{item.product_price.toFixed(2)}}</td>
+                <td>{{item.quantity}}</td>
+                <td>R {{item.price * item.quantity}}</td>
+              </tr>
+              <tr>
+                  <td></td><td></td><td></td><td><strong>Grand Total:</strong></td><td><code>$ {{getTotal()}}</code></td>
+              </tr>
+            </table>
+            <br/>
+            <br/>
+            <br/>
+            <ion-grid>
+              <ion-row>
+              <ion-col siz="6">
+                <button ion-button id="backButton" class="btn btn-primary" style="position: fixed;top: 60%;left: 15%;border-radius: 50%;box-shadow: 10px 10px;font-size: 1vw;color: black;" (click)="closePrintSelection()"><span class="glyphicon glyphicon-backward"></span>Return</button>
+              </ion-col>
+              <ion-col size="6">
+                <button ion-button id="purchaseButton" class="btn btn-success" style="position: fixed;top: 60%;right: 15%;border-radius: 50%;box-shadow: 10px 10px;font-size: 1vw;color: black;" (click)="paymentGateway()">Proceed to Payment</button></ion-col>    
+              </ion-row>
+            </ion-grid>
         </section>
-        
 </ion-content>

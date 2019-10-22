@@ -5,7 +5,8 @@ import { ProductsPageModule } from './products/products.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' },
-  { path: 'products', loadChildren: './products/products.module#ProductsPageModule' }
+  { path: 'products', loadChildren: './products/products.module#ProductsPageModule' },
+  { path: 'payment', loadChildren: './payment/payment.module#PaymentPageModule' }
 ];
 
 @NgModule({

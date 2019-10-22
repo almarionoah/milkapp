@@ -72,7 +72,7 @@ export class ProductsPage implements OnInit {
    this.isProductsSelected = false;
  }
 
- getDate(){
+ getDate() {
    return new Date();
  }
 
@@ -87,5 +87,9 @@ export class ProductsPage implements OnInit {
    const validityExpiryDay = currentDay + 5;
    today.setDate(validityExpiryDay);
    return today;
+ }
+
+ computeSubTotal(quantity: number , price: number) {
+  return (quantity * price);
  }
 }

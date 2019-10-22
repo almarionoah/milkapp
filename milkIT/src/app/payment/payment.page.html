@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>A charge of $ <code>{{getTotal().toFixed(2)}}</code> will be placed</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  	<div class="alertBox" id="card_payment_error" style="background-color:red;height: 20%;" hidden></div>
+    <ion-card>
+    <form id="form">
+      <label for="card_number">Card Number:</label>
+      <input ion-input type="text" placeholder="Card Number" id="card_number" />
+      <br/><br/>
+      <label for="expiry_date">Expiry Date:</label>
+      <input ion-input type="month" id="expiry_date" />
+      <br/><br/>
+      <label for="cvv">cvv (3 digits at the back of card):</label>
+      <input ion-input type="text" placeholder="cvv" id="cvv" size="3">
+      <br/><br/>
+      <label for="email">E-mail:</label>
+      <input ion-input type="email" placeholder="E-mail" id="email" name="email">
+      <br/><br/>
+      <button ion-button type="button" id="order" class="btn btn-success" [(disabled)]="areFieldsValid">Place Order</button><br/><br/><img src="../images/credit_providers.png" alt="credit_provider_images" style="max-width: 200px;max-height:200px;"></form>
+    </ion-card>
+    </ion-content>

@@ -14,6 +14,7 @@ export class PaymentPage implements OnInit {
   approvedCredit: any;
   alertController: any;
   areFieldsValid = true;
+  expiryDate = new Date();
   constructor(productList: ProductListService, alertController: AlertController) {
     this.productList = productList;
     this.alertController = alertController;
@@ -157,6 +158,10 @@ export class PaymentPage implements OnInit {
     }
 
 
+}
+
+getDate() {
+  return new Date();
 }
 
   closePaymentGateWay() {

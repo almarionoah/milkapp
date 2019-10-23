@@ -90,6 +90,7 @@ export class ProductsPage implements OnInit {
  }
 
  computeSubTotal(quantity: number , price: number) {
-  return (quantity * price);
+   console.log(quantity + '\n' + price);
+   return (quantity * price);
  }
 }

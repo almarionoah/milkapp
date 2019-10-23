@@ -12,7 +12,7 @@
       <input ion-input type="text" placeholder="Card Number" id="card_number" />
       <br/><br/>
       <label for="expiry_date">Expiry Date:</label>
-      <input ion-input type="month" id="expiry_date" />
+      <ion-datetime  displayFormat="MMMM YY" min="2020-06-04" max="2025-12-31" id="expiry_date" [value]="getDate()" style="border: 3px;color: gray;"></ion-datetime><label>example: MM\YY</label>
       <br/><br/>
       <label for="cvv">cvv (3 digits at the back of card):</label>
       <input ion-input type="text" placeholder="cvv" id="cvv" size="3">
@@ -20,6 +20,13 @@
       <label for="email">E-mail:</label>
       <input ion-input type="email" placeholder="E-mail" id="email" name="email">
       <br/><br/>
-      <button ion-button type="button" id="order" class="btn btn-success" [(disabled)]="areFieldsValid">Place Order</button><br/><br/><img src="../images/credit_providers.png" alt="credit_provider_images" style="max-width: 200px;max-height:200px;"></form>
+      </form>
+      <ion-grid>
+        <ion-row>
+          <button ion-button type="button" id="btnBack" routerLink="/products" routerLinkActive="router-link-active" routerDirection="backward"  class="btn btn-primary"><h4>Back</h4></button><br/><br/>
+          <button ion-button type="button" id="order" class="btn btn-success" [(disabled)]="areFieldsValid">Place Order</button>
+        </ion-row>
+      </ion-grid>
+      <br/><br/><img src="./images/credit_providers.png" alt="credit_provider_images" style="max-width: 200px;max-height:200px;" />
     </ion-card>
     </ion-content>

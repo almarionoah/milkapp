@@ -74,7 +74,7 @@
                   </ion-col>
                   <ion-col size="4">
                       <p id="quote_details">
-                          Date:{{getDate()| date: "longDate"}}<br />Quote Number:{{getQuoteNumber()}}<br/>Valid Period: {{getDate() | date: "longDate"}} until {{getValidityPeriod() | date: "longDate"}}<br/>
+                          Date:{{getDate()| date: "longDate"}}<br />Quote Number: {{getQuoteNumber()}} <br/>Valid Period: {{getDate() | date: "longDate"}} until {{getValidityPeriod() | date: "longDate"}}<br/>
                         </p>
                   </ion-col>
                 </ion-row>
@@ -94,9 +94,9 @@
               <tr *ngFor="let item of cartItems">
                 <td></td>
                 <td>{{item.product_name}} &nbsp; {{item.product_size}}</td>
-                <td>R {{item.product_price.toFixed(2)}}</td>
+                <td>$ {{item.product_price.toFixed(2)}}</td>
                 <td>{{item.quantity}}</td>
-                <td>$ {{computeSubTotal(item.quantity, item.price).toFixed(2)}}</td>
+                <td>$ {{computeSubTotal(item.quantity, item.product_price).toFixed(2)}}</td>
               </tr>
               <tr>
                   <td></td><td></td><td></td><td><strong>Grand Total:</strong></td><td><code>$ {{getTotal().toFixed(2)}}</code></td>
@@ -111,7 +111,7 @@
                 <button ion-button id="backButton" class="btn btn-primary" style="position: fixed;top: 60%;left: 15%;border-radius: 50%;box-shadow: 10px 10px;font-size: 1vw;color: black;" (click)="closePrintSelection()"><span class="glyphicon glyphicon-backward"></span>Return</button>
               </ion-col>
               <ion-col size="6">
-                <button ion-button id="purchaseButton" class="btn btn-success" style="position: fixed;top: 60%;right: 15%;border-radius: 50%;box-shadow: 10px 10px;font-size: 1vw;color: black;" routerLink='/payment' routerDirection="forward">Proceed to Payment</button></ion-col>    
+                <button ion-button id="purchaseButton" class="btn btn-success" style="position: fixed;top: 60%;right: 15%;border-radius: 50%;box-shadow: 10px 10px;font-size: 1vw;color: black;" routerLink="/payment" routerDirection="forward">Proceed to Payment</button></ion-col>    
               </ion-row>
             </ion-grid>
         </section>
